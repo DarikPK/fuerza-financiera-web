@@ -99,16 +99,28 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
 
                 try {
-                    // Prepara los encabezados para la solicitud a la API
+                    // 1. Verificar conectividad a internet de forma silenciosa
+                    try {
+                        await fetch("https://google.com", { mode: 'no-cors' });
+                    } catch (netError) {
+                        throw new Error("No se pudo establecer conexión a internet. Por favor, revise su red.");
+                    }
+
+                    // 2. Prepara los encabezados y realiza la solicitud a la API
                     const headers = new Headers();
-                    // Este es un token público de ejemplo para esta API.
                     headers.append("Authorization", "Bearer apis-token-1.aTSI1U7KEuT-6bbbCguH-4Y8TI6KS73N");
 
                     const response = await fetch(apiUrl, { method: 'GET', headers: headers });
+
+                    if (!response.ok) {
+                        // Si la respuesta no es exitosa (ej. 404, 500), lanzar un error con el status
+                        throw new Error(`Error de la API: ${response.status} ${response.statusText}`);
+                    }
+
                     const data = await response.json();
 
-                    if (response.ok && (data.nombre || data.nombres)) {
-                        // Limpiar mensajes anteriores
+                    if (data.nombre || data.nombres) {
+                        // Limpiar mensajes anteriores y procesar datos
                         document.getElementById('mensaje-bienvenida').innerHTML = '';
                         document.getElementById('mensaje-advertencia').innerHTML = '';
 
@@ -128,10 +140,12 @@ document.addEventListener('DOMContentLoaded', function() {
                             steps[currentStep].style.display = 'block';
                         }
                     } else {
-                        throw new Error(data.message || 'No se encontraron datos para el documento ingresado.');
+                        // Si la API devuelve éxito pero no hay datos, es un documento no encontrado
+                        throw new Error('La API no devolvió datos para el documento consultado.');
                     }
                 } catch (error) {
-                    errorMessage.textContent = 'Documento no válido o no encontrado. Por favor, verifíquelo.';
+                    // 3. Mostrar el mensaje de error DETALLADO
+                    errorMessage.textContent = `Error: ${error.message}`;
                     errorMessage.style.display = 'block';
                 } finally {
                     // Finalizar carga
