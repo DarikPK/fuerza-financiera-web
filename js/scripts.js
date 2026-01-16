@@ -91,12 +91,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 apiNextBtn.disabled = true;
                 apiNextBtn.textContent = 'Validando...';
 
-                let apiUrl = '';
+                const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
+                let targetUrl = '';
                 if (tipo === 'dni') {
-                    apiUrl = `https://api.apis.net.pe/v1/dni?numero=${numero}`;
+                    targetUrl = `https://api.apis.net.pe/v1/dni?numero=${numero}`;
                 } else {
-                    apiUrl = `https://api.apis.net.pe/v1/ruc?numero=${numero}`;
+                    targetUrl = `https://api.apis.net.pe/v1/ruc?numero=${numero}`;
                 }
+                const apiUrl = proxyUrl + targetUrl;
 
                 try {
                     // 1. Verificar conectividad a internet de forma silenciosa
