@@ -1,4 +1,20 @@
 document.addEventListener('DOMContentLoaded', function() {
+    // --- Lógica de Animación de "Fade-in" ---
+    const fadeInSections = document.querySelectorAll('.fade-in-section');
+    if (window.IntersectionObserver) {
+        const sectionObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        fadeInSections.forEach(section => {
+            sectionObserver.observe(section);
+        });
+    }
 
     // --- Lógica del Simulador Referencial ---
     const calcularBtn = document.getElementById('calcular-btn');

@@ -40,14 +40,10 @@ nav {
     align-items: center;
 }
 
-nav .logo a {
-    display: flex;
-    align-items: center;
-}
-
-nav .logo img {
-    max-height: 50px; /* Ajusta la altura máxima del logo */
-    width: auto;
+nav .logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--primary-color);
 }
 
 nav ul {
@@ -101,6 +97,12 @@ section {
     padding: 1.5rem;
     border: 1px solid #ddd;
     border-radius: 8px;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.benefit-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
 /* --- Forms & Simulator --- */
@@ -143,11 +145,12 @@ section {
     border-radius: 4px;
     font-size: 1rem;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s, transform 0.3s;
 }
 
 .cta-button:hover, button:hover {
     background-color: var(--secondary-color);
+    transform: translateY(-2px);
 }
 
 button.prev-btn {
@@ -195,6 +198,18 @@ footer .footer-links a {
 
 .whatsapp-float:hover {
     background-color: #128C7E;
+}
+
+/* --- Animations --- */
+.fade-in-section {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.fade-in-section.is-visible {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 /* --- Responsive Design --- */
