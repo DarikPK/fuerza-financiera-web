@@ -99,7 +99,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
 
                 try {
-                    const response = await fetch(apiUrl);
+                    // Prepara los encabezados para la solicitud a la API
+                    const headers = new Headers();
+                    // Este es un token público de ejemplo para esta API.
+                    headers.append("Authorization", "Bearer apis-token-1.aTSI1U7KEuT-6bbbCguH-4Y8TI6KS73N");
+
+                    const response = await fetch(apiUrl, { method: 'GET', headers: headers });
                     const data = await response.json();
 
                     if (response.ok && (data.nombre || data.nombres)) {
