@@ -1,0 +1,204 @@
+/* --- Global Styles & Branding --- */
+:root {
+    --primary-color: #0A2342; /* Azul oscuro */
+    --secondary-color: #D4AF37; /* Dorado */
+    --text-color: #333;
+    --background-color: #FFFFFF;
+    --light-gray: #f4f4f4;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    color: var(--text-color);
+    background-color: var(--background-color);
+}
+
+h1, h2, h3 {
+    color: var(--primary-color);
+}
+
+a {
+    color: var(--secondary-color);
+    text-decoration: none;
+}
+
+/* --- Header & Navigation --- */
+header {
+    background: var(--background-color);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    padding: 1rem 5%;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav .logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+nav ul li {
+    margin-left: 2rem;
+}
+
+nav ul li a {
+    color: var(--primary-color);
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+nav ul li a:hover {
+    color: var(--secondary-color);
+}
+
+/* --- Main Content & Sections --- */
+main {
+    padding: 2rem 5%;
+}
+
+section {
+    padding: 2rem 0;
+}
+
+.hero {
+    text-align: center;
+    padding: 3rem 1rem;
+    background: var(--light-gray);
+}
+
+.hero h1 {
+    font-size: 2.5rem;
+}
+
+.benefits {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    text-align: center;
+}
+
+.benefit-item {
+    padding: 1.5rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+/* --- Forms & Simulator --- */
+.form-section, .simulator-section, .content-section {
+    max-width: 800px;
+    margin: auto;
+    background: var(--light-gray);
+    padding: 2rem;
+    border-radius: 8px;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+}
+
+.form-group input, .form-group select {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.consent label {
+    font-weight: normal;
+}
+
+/* --- Buttons --- */
+.cta-button, button {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.cta-button:hover, button:hover {
+    background-color: var(--secondary-color);
+}
+
+button.prev-btn {
+    background-color: #ccc;
+    color: #333;
+}
+
+/* --- Footer --- */
+footer {
+    background: var(--primary-color);
+    color: white;
+    text-align: center;
+    padding: 2rem 5%;
+}
+
+footer .legal-notice {
+    font-size: 0.9rem;
+    max-width: 800px;
+    margin: 0 auto 1rem auto;
+}
+
+footer .footer-links a {
+    color: white;
+    margin: 0 1rem;
+}
+
+/* --- WhatsApp Button --- */
+.whatsapp-float {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #25D366;
+    color: white;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    text-align: center;
+    font-size: 30px;
+    box-shadow: 2px 2px 6px rgba(0,0,0,0.3);
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.whatsapp-float:hover {
+    background-color: #128C7E;
+}
+
+/* --- Responsive Design --- */
+@media (max-width: 768px) {
+    nav ul {
+        display: none; /* Simplistic: hide for mobile, would need JS for a burger menu */
+    }
+    .hero h1 {
+        font-size: 2rem;
+    }
+}
