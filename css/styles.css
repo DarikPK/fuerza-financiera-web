@@ -136,6 +136,15 @@ section {
     font-weight: normal;
 }
 
+.mensaje-error-ruc {
+    color: #c0392b; /* Rojo oscuro */
+    background-color: #f9e5e3;
+    border: 1px solid #c0392b;
+    padding: 1rem;
+    border-radius: 4px;
+    margin-bottom: 1.5rem;
+}
+
 /* --- Buttons --- */
 .cta-button, button {
     background-color: var(--primary-color);

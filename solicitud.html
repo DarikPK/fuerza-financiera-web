@@ -31,23 +31,24 @@
                     <div class="form-group">
                         <label for="tipo_solicitante">Tipo de Solicitante</label>
                         <select id="tipo_solicitante" name="tipo_solicitante">
-                            <option value="persona">Persona Natural</option>
-                            <option value="empresa">Persona con Negocio / PYME</option>
+                            <option value="" disabled selected>Seleccione una opción</option>
+                            <option value="dni">Persona Natural (DNI)</option>
+                            <option value="ruc10">Persona con Negocio (RUC 10)</option>
+                            <option value="ruc20">Empresa (RUC 20)</option>
                         </select>
                     </div>
-                    <div class="form-group">
-                        <label for="nombre_completo">Nombre Completo</label>
-                        <input type="text" id="nombre_completo" name="nombre_completo" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="documento">DNI o RUC</label>
+                    <div id="documento-container" class="form-group" style="display: none;">
+                        <label for="documento">Número de Documento</label>
                         <input type="text" id="documento" name="documento" required>
+                        <small id="error-message" style="color: red; display: none;"></small>
                     </div>
-                    <button type="button" class="next-btn cta-button">Siguiente</button>
+                    <button type="button" id="api-next-btn" class="next-btn cta-button">Siguiente</button>
                 </div>
 
                 <!-- Paso 2: Información Financiera -->
                 <div class="form-step" id="step-2" style="display:none;">
+                    <div id="mensaje-bienvenida"></div>
+                    <div id="mensaje-advertencia"></div>
                     <h2>Paso 2: Información Financiera</h2>
                     <div class="form-group">
                         <label for="ingresos">Ingresos Mensuales (S/)</label>
