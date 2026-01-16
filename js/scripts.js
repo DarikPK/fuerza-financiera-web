@@ -91,35 +91,17 @@ document.addEventListener('DOMContentLoaded', function() {
                 apiNextBtn.disabled = true;
                 apiNextBtn.textContent = 'Validando...';
 
-                const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
-                let targetUrl = '';
-                if (tipo === 'dni') {
-                    targetUrl = `https://api.apis.net.pe/v1/dni?numero=${numero}`;
-                } else {
-                    targetUrl = `https://api.apis.net.pe/v1/ruc?numero=${numero}`;
-                }
-                const apiUrl = proxyUrl + targetUrl;
+                // El frontend ahora llama a nuestro propio servidor proxy
+                const apiUrl = `/api/consulta?tipo=${tipo}&numero=${numero}`;
 
                 try {
-                    // 1. Verificar conectividad a internet de forma silenciosa
-                    try {
-                        await fetch("https://google.com", { mode: 'no-cors' });
-                    } catch (netError) {
-                        throw new Error("No se pudo establecer conexión a internet. Por favor, revise su red.");
-                    }
-
-                    // 2. Prepara los encabezados y realiza la solicitud a la API
-                    const headers = new Headers();
-                    headers.append("Authorization", "Bearer apis-token-1.aTSI1U7KEuT-6bbbCguH-4Y8TI6KS73N");
-
-                    const response = await fetch(apiUrl, { method: 'GET', headers: headers });
-
-                    if (!response.ok) {
-                        // Si la respuesta no es exitosa (ej. 404, 500), lanzar un error con el status
-                        throw new Error(`Error de la API: ${response.status} ${response.statusText}`);
-                    }
-
+                    const response = await fetch(apiUrl);
                     const data = await response.json();
+
+                    // Nuestro servidor proxy reenviará los errores, así que podemos manejarlos aquí.
+                    if (data.error) {
+                         throw new Error(data.error);
+                    }
 
                     if (data.nombre || data.nombres) {
                         // Limpiar mensajes anteriores y procesar datos
