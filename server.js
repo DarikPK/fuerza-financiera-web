@@ -29,8 +29,10 @@ app.get('/api/consulta', async (req, res) => {
         const apiResponse = await fetch(targetUrl, {
             headers: {
                 'Authorization': 'Bearer apis-token-1.aTSI1U7KEuT-6bbbCguH-4Y8TI6KS73N',
-                'Referer': 'https://apis.net.pe/consulta-dni-api', // Cabecera Referer que podría ser requerida
-                'Content-Type': 'application/json'
+                'Referer': 'https://apis.net.pe/consulta-dni-api',
+                'Content-Type': 'application/json',
+                // Simular un navegador estándar para evitar el bloqueo 403
+                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36'
             }
         });
 
